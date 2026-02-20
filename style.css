@@ -1,17 +1,31 @@
 
+:root {
+    --grid-size: 16;
+}
+
 #container {
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
-    height: 400px;
+    width: 600px;
 }
 
 .cell {
     background-color: aqua;
-    width: 25px;
-    height: 25px;
+    width: calc(100% / var(--grid-size));
+    aspect-ratio: 1;
+    box-sizing: border-box;
 }
 
 .hover {
     background-color: bisque;
+}
+
+#btn {
+    background-color: pink;
+    color: black;
+    border-radius: 5%;
+    border-style: none;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
 }

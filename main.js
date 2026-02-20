@@ -1,22 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("container");
   if (container) {
-    for (let i = 0; i < 16; i++) {
-      for (let j = 0; j < 16; j++) {
-        const newDiv = document.createElement("div");
-        newDiv.classList.add("cell");
-        container.appendChild(newDiv);
-      }
-    }
+    createGrid(16);
   }
 
-  const divs = document.getElementsByClassName("cell");
-  if (divs) {
-    for (const div of divs) {
-        div.addEventListener("mouseover", () => {
-            div.classList.add("hover");
-        })
+  const btn = document.getElementById("btn");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const input = prompt(
+        "Enter the number of squares per side (e.g. 16 for 16x16, max 100).",
+      );
+      if (input <= 100) {
+        document.documentElement.style.setProperty("--grid-size", input);
+        createGrid(input);
+      } else {
+        alert("Please enter a number between 1 and 100.");
+      }
+    });
+  }
+
+  function createGrid(size) {
+    container.innerHTML = "";
+
+    for (let i = 0; i < size * size; i++) {
+      const div = document.createElement("div");
+      div.classList.add("cell");
+      div.addEventListener("mouseover", () => {
+        div.classList.add("hover");
+      });
+      container.appendChild(div);
     }
   }
 });
-
